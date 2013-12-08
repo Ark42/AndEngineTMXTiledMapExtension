@@ -219,8 +219,9 @@ public class TMXLayer extends SpriteBatch implements TMXConstants {
 
 	void initializeTMXTilesFromDataString(final String pDataString, final String pDataEncoding, final String pDataCompression, final ITMXTilePropertiesListener pTMXTilePropertyListener) throws IOException, IllegalArgumentException {
 		DataInputStream dataIn = null;
+		InputStream in = null;
 		try{
-			InputStream in = new ByteArrayInputStream(pDataString.getBytes("UTF-8"));
+			in = new ByteArrayInputStream(pDataString.getBytes("UTF-8"));
 
 			/* Wrap decoding Streams if necessary. */
 			if(pDataEncoding != null) {
@@ -248,6 +249,7 @@ public class TMXLayer extends SpriteBatch implements TMXConstants {
 			}
 		} finally {
 			StreamUtils.close(dataIn);
+			StreamUtils.close(in);
 		}
 	}
 
